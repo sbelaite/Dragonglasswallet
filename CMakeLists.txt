@@ -8,13 +8,13 @@ execute_process(COMMAND git log -1 --pretty=format:%h
 WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
 OUTPUT_VARIABLE GIT_REVISION)
 
-set(CRYPTONOTE_LIB cryptonote)
+set(CRYPTONOTE_LIB dragonglass)
 
 include_directories(${CMAKE_BINARY_DIR}
     src
-    cryptonote/external
-    cryptonote/include
-    cryptonote/src)
+    dragonglass/external
+    dragonglass/include
+    dragonglass/src)
 
 find_package(Qt5Gui REQUIRED)
 find_package(Qt5Widgets REQUIRED)
@@ -35,7 +35,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 link_directories(${Boost_LIBRARY_DIRS})
 
 set(VERSION "")
-configure_file("cryptonote/src/version.h.in" "version.h")
+configure_file("dragonglass/src/version.h.in" "version.h")
 configure_file("src/CryptoNoteWalletConfig.h.in" "CryptoNoteWalletConfig.h")
 
 add_definitions(-DGIT_REVISION=\"${GIT_REVISION}\")
@@ -43,130 +43,130 @@ add_definitions(-DGIT_REVISION=\"${GIT_REVISION}\")
 set(CMAKE_AUTOMOC ON)
 
 set(CRYPTONOTE_SOURCES
-  cryptonote/external/miniupnpc/connecthostport.c
-  cryptonote/external/miniupnpc/igd_desc_parse.c
-  cryptonote/external/miniupnpc/minisoap.c
-  cryptonote/external/miniupnpc/miniupnpc.c
-  cryptonote/external/miniupnpc/miniwget.c
-  cryptonote/external/miniupnpc/minixml.c
-  cryptonote/external/miniupnpc/portlistingparse.c
-  cryptonote/external/miniupnpc/receivedata.c
-  cryptonote/external/miniupnpc/upnpcommands.c
-  cryptonote/external/miniupnpc/upnpreplyparse.c
-  cryptonote/src/Common/Base58.cpp
-  cryptonote/src/Common/CommandLine.cpp
-  cryptonote/src/Common/Util.cpp
-  cryptonote/src/Common/StringTools.cpp
-  cryptonote/src/Common/JsonValue.cpp
-  cryptonote/src/Common/ConsoleTools.cpp
-  cryptonote/src/Common/MemoryInputStream.cpp
-  cryptonote/src/Common/PathTools.cpp
-  cryptonote/src/Common/StdInputStream.cpp
-  cryptonote/src/Common/StdOutputStream.cpp
-  cryptonote/src/Common/StreamTools.cpp
-  cryptonote/src/Common/StringOutputStream.cpp
-  cryptonote/src/Common/StringView.cpp
-  cryptonote/src/Common/VectorOutputStream.cpp
-  cryptonote/src/crypto/blake256.c
-  cryptonote/src/crypto/chacha8.c
-  cryptonote/src/crypto/crypto-ops-data.c
-  cryptonote/src/crypto/crypto-ops.c
-  cryptonote/src/crypto/crypto.cpp
-  cryptonote/src/crypto/groestl.c
-  cryptonote/src/crypto/hash-extra-blake.c
-  cryptonote/src/crypto/hash-extra-groestl.c
-  cryptonote/src/crypto/hash-extra-jh.c
-  cryptonote/src/crypto/hash-extra-skein.c
-  cryptonote/src/crypto/hash.c
-  cryptonote/src/crypto/jh.c
-  cryptonote/src/crypto/keccak.c
-  cryptonote/src/crypto/oaes_lib.c
-  cryptonote/src/crypto/random.c
-  cryptonote/src/crypto/skein.c
-  cryptonote/src/crypto/slow-hash.c
-  cryptonote/src/crypto/slow-hash.cpp
-  cryptonote/src/crypto/tree-hash.c
-  cryptonote/src/CryptoNoteCore/BlockchainIndices.cpp
-  cryptonote/src/CryptoNoteCore/BlockchainMessages.cpp
-  cryptonote/src/CryptoNoteCore/BlockIndex.cpp
-  cryptonote/src/CryptoNoteCore/CoreConfig.cpp
-  cryptonote/src/CryptoNoteCore/CryptoNoteBasic.cpp
-  cryptonote/src/CryptoNoteCore/CryptoNoteTools.cpp
-  cryptonote/src/CryptoNoteCore/Currency.cpp
-  cryptonote/src/CryptoNoteCore/MinerConfig.cpp
-  cryptonote/src/CryptoNoteCore/Transaction.cpp
-  cryptonote/src/CryptoNoteCore/Account.cpp
-  cryptonote/src/CryptoNoteCore/Blockchain.cpp
-  cryptonote/src/CryptoNoteCore/Checkpoints.cpp
-  cryptonote/src/CryptoNoteCore/CryptoNoteBasicImpl.cpp
-  cryptonote/src/CryptoNoteCore/Core.cpp
-  cryptonote/src/CryptoNoteCore/CryptoNoteFormatUtils.cpp
-  cryptonote/src/CryptoNoteCore/CryptoNoteSerialization.cpp
-  cryptonote/src/CryptoNoteCore/Difficulty.cpp
-  cryptonote/src/CryptoNoteCore/IBlock.cpp
-  cryptonote/src/CryptoNoteCore/Miner.cpp
-  cryptonote/src/CryptoNoteCore/TransactionExtra.cpp
-  cryptonote/src/CryptoNoteCore/TransactionPool.cpp
-  cryptonote/src/CryptoNoteCore/TransactionPrefixImpl.cpp
-  cryptonote/src/CryptoNoteCore/TransactionUtils.cpp
-  cryptonote/src/InProcessNode/InProcessNode.cpp
-  cryptonote/src/InProcessNode/InProcessNodeErrors.cpp
-  cryptonote/src/NodeRpcProxy/NodeErrors.cpp
-  cryptonote/src/NodeRpcProxy/NodeRpcProxy.cpp
-  cryptonote/src/P2p/NetNodeConfig.cpp
-  cryptonote/src/Serialization/BinaryInputStreamSerializer.cpp
-  cryptonote/src/Serialization/BinaryOutputStreamSerializer.cpp
-  cryptonote/src/Serialization/JsonInputValueSerializer.cpp
-  cryptonote/src/Serialization/JsonOutputStreamSerializer.cpp
-  cryptonote/src/Serialization/KVBinaryInputStreamSerializer.cpp
-  cryptonote/src/Serialization/KVBinaryOutputStreamSerializer.cpp
-  cryptonote/src/Serialization/SerializationOverloads.cpp
-  cryptonote/src/Transfers/BlockchainSynchronizer.cpp
-  cryptonote/src/Transfers/SynchronizationState.cpp
-  cryptonote/src/Transfers/TransfersConsumer.cpp
-  cryptonote/src/Transfers/TransfersContainer.cpp
-  cryptonote/src/Transfers/TransfersSubscription.cpp
-  cryptonote/src/Transfers/TransfersSynchronizer.cpp
-  cryptonote/src/Wallet/LegacyKeysImporter.cpp
-  cryptonote/src/Wallet/WalletAsyncContextCounter.cpp
-  cryptonote/src/Wallet/WalletErrors.cpp
-  cryptonote/src/WalletLegacy/KeysStorage.cpp
-  cryptonote/src/WalletLegacy/WalletLegacy.cpp
-  cryptonote/src/WalletLegacy/WalletHelper.cpp
-  cryptonote/src/WalletLegacy/WalletLegacySerializer.cpp
-  cryptonote/src/WalletLegacy/WalletLegacySerialization.cpp
-  cryptonote/src/WalletLegacy/WalletTransactionSender.cpp
-  cryptonote/src/WalletLegacy/WalletUnconfirmedTransactions.cpp
-  cryptonote/src/WalletLegacy/WalletUserTransactionsCache.cpp
-  cryptonote/src/System/ContextGroup.cpp
-  cryptonote/src/System/Event.cpp
-  cryptonote/src/System/EventLock.cpp
-  cryptonote/src/System/InterruptedException.cpp
-  cryptonote/src/System/Ipv4Address.cpp
-  cryptonote/src/System/TcpStream.cpp
-  cryptonote/src/HTTP/HttpRequest.cpp
-  cryptonote/src/HTTP/HttpParser.cpp
-  cryptonote/src/HTTP/HttpParserErrorCodes.cpp
-  cryptonote/src/HTTP/HttpResponse.cpp
-  cryptonote/src/Rpc/HttpClient.cpp
-  cryptonote/src/Rpc/JsonRpc.cpp
-  cryptonote/src/P2p/NetNode.cpp
-  cryptonote/src/P2p/LevinProtocol.cpp
-  cryptonote/src/P2p/NetNodeConfig.cpp
-  cryptonote/src/P2p/PeerListManager.cpp
-  cryptonote/src/CryptoNoteProtocol/CryptoNoteProtocolHandler.cpp
-  cryptonote/src/Logging/ILogger.cpp
-  cryptonote/src/Logging/LoggerGroup.cpp
-  cryptonote/src/Logging/CommonLogger.cpp
-  cryptonote/src/Logging/LoggerManager.cpp
-  cryptonote/src/Logging/FileLogger.cpp
-  cryptonote/src/Logging/StreamLogger.cpp
-  cryptonote/src/Logging/ConsoleLogger.cpp
-  cryptonote/src/Logging/LoggerMessage.cpp
-  cryptonote/src/Logging/LoggerRef.cpp
-  cryptonote/src/BlockchainExplorer/BlockchainExplorer.cpp
-  cryptonote/src/BlockchainExplorer/BlockchainExplorerDataBuilder.cpp
-  cryptonote/src/BlockchainExplorer/BlockchainExplorerErrors.cpp
+  dragonglass/external/miniupnpc/connecthostport.c
+  dragonglass/external/miniupnpc/igd_desc_parse.c
+  dragonglass/external/miniupnpc/minisoap.c
+  dragonglass/external/miniupnpc/miniupnpc.c
+  dragonglass/external/miniupnpc/miniwget.c
+  dragonglass/external/miniupnpc/minixml.c
+  dragonglass/external/miniupnpc/portlistingparse.c
+  dragonglass/external/miniupnpc/receivedata.c
+  dragonglass/external/miniupnpc/upnpcommands.c
+  dragonglass/external/miniupnpc/upnpreplyparse.c
+  dragonglass/src/Common/Base58.cpp
+  dragonglass/src/Common/CommandLine.cpp
+  dragonglass/src/Common/Util.cpp
+  dragonglass/src/Common/StringTools.cpp
+  dragonglass/src/Common/JsonValue.cpp
+  dragonglass/src/Common/ConsoleTools.cpp
+  dragonglass/src/Common/MemoryInputStream.cpp
+  dragonglass/src/Common/PathTools.cpp
+  dragonglass/src/Common/StdInputStream.cpp
+  dragonglass/src/Common/StdOutputStream.cpp
+  dragonglass/src/Common/StreamTools.cpp
+  dragonglass/src/Common/StringOutputStream.cpp
+  dragonglass/src/Common/StringView.cpp
+  dragonglass/src/Common/VectorOutputStream.cpp
+  dragonglass/src/crypto/blake256.c
+  dragonglass/src/crypto/chacha8.c
+  dragonglass/src/crypto/crypto-ops-data.c
+  dragonglass/src/crypto/crypto-ops.c
+  dragonglass/src/crypto/crypto.cpp
+  dragonglass/src/crypto/groestl.c
+  dragonglass/src/crypto/hash-extra-blake.c
+  dragonglass/src/crypto/hash-extra-groestl.c
+  dragonglass/src/crypto/hash-extra-jh.c
+  dragonglass/src/crypto/hash-extra-skein.c
+  dragonglass/src/crypto/hash.c
+  dragonglass/src/crypto/jh.c
+  dragonglass/src/crypto/keccak.c
+  dragonglass/src/crypto/oaes_lib.c
+  dragonglass/src/crypto/random.c
+  dragonglass/src/crypto/skein.c
+  dragonglass/src/crypto/slow-hash.c
+  dragonglass/src/crypto/slow-hash.cpp
+  dragonglass/src/crypto/tree-hash.c
+  dragonglass/src/CryptoNoteCore/BlockchainIndices.cpp
+  dragonglass/src/CryptoNoteCore/BlockchainMessages.cpp
+  dragonglass/src/CryptoNoteCore/BlockIndex.cpp
+  dragonglass/src/CryptoNoteCore/CoreConfig.cpp
+  dragonglass/src/CryptoNoteCore/CryptoNoteBasic.cpp
+  dragonglass/src/CryptoNoteCore/CryptoNoteTools.cpp
+  dragonglass/src/CryptoNoteCore/Currency.cpp
+  dragonglass/src/CryptoNoteCore/MinerConfig.cpp
+  dragonglass/src/CryptoNoteCore/Transaction.cpp
+  dragonglass/src/CryptoNoteCore/Account.cpp
+  dragonglass/src/CryptoNoteCore/Blockchain.cpp
+  dragonglass/src/CryptoNoteCore/Checkpoints.cpp
+  dragonglass/src/CryptoNoteCore/CryptoNoteBasicImpl.cpp
+  dragonglass/src/CryptoNoteCore/Core.cpp
+  dragonglass/src/CryptoNoteCore/CryptoNoteFormatUtils.cpp
+  dragonglass/src/CryptoNoteCore/CryptoNoteSerialization.cpp
+  dragonglass/src/CryptoNoteCore/Difficulty.cpp
+  dragonglass/src/CryptoNoteCore/IBlock.cpp
+  dragonglass/src/CryptoNoteCore/Miner.cpp
+  dragonglass/src/CryptoNoteCore/TransactionExtra.cpp
+  dragonglass/src/CryptoNoteCore/TransactionPool.cpp
+  dragonglass/src/CryptoNoteCore/TransactionPrefixImpl.cpp
+  dragonglass/src/CryptoNoteCore/TransactionUtils.cpp
+  dragonglass/src/InProcessNode/InProcessNode.cpp
+  dragonglass/src/InProcessNode/InProcessNodeErrors.cpp
+  dragonglass/src/NodeRpcProxy/NodeErrors.cpp
+  dragonglass/src/NodeRpcProxy/NodeRpcProxy.cpp
+  dragonglass/src/P2p/NetNodeConfig.cpp
+  dragonglass/src/Serialization/BinaryInputStreamSerializer.cpp
+  dragonglass/src/Serialization/BinaryOutputStreamSerializer.cpp
+  dragonglass/src/Serialization/JsonInputValueSerializer.cpp
+  dragonglass/src/Serialization/JsonOutputStreamSerializer.cpp
+  dragonglass/src/Serialization/KVBinaryInputStreamSerializer.cpp
+  dragonglass/src/Serialization/KVBinaryOutputStreamSerializer.cpp
+  dragonglass/src/Serialization/SerializationOverloads.cpp
+  dragonglass/src/Transfers/BlockchainSynchronizer.cpp
+  dragonglass/src/Transfers/SynchronizationState.cpp
+  dragonglass/src/Transfers/TransfersConsumer.cpp
+  dragonglass/src/Transfers/TransfersContainer.cpp
+  dragonglass/src/Transfers/TransfersSubscription.cpp
+  dragonglass/src/Transfers/TransfersSynchronizer.cpp
+  dragonglass/src/Wallet/LegacyKeysImporter.cpp
+  dragonglass/src/Wallet/WalletAsyncContextCounter.cpp
+  dragonglass/src/Wallet/WalletErrors.cpp
+  dragonglass/src/WalletLegacy/KeysStorage.cpp
+  dragonglass/src/WalletLegacy/WalletLegacy.cpp
+  dragonglass/src/WalletLegacy/WalletHelper.cpp
+  dragonglass/src/WalletLegacy/WalletLegacySerializer.cpp
+  dragonglass/src/WalletLegacy/WalletLegacySerialization.cpp
+  dragonglass/src/WalletLegacy/WalletTransactionSender.cpp
+  dragonglass/src/WalletLegacy/WalletUnconfirmedTransactions.cpp
+  dragonglass/src/WalletLegacy/WalletUserTransactionsCache.cpp
+  dragonglass/src/System/ContextGroup.cpp
+  dragonglass/src/System/Event.cpp
+  dragonglass/src/System/EventLock.cpp
+  dragonglass/src/System/InterruptedException.cpp
+  dragonglass/src/System/Ipv4Address.cpp
+  dragonglass/src/System/TcpStream.cpp
+  dragonglass/src/HTTP/HttpRequest.cpp
+  dragonglass/src/HTTP/HttpParser.cpp
+  dragonglass/src/HTTP/HttpParserErrorCodes.cpp
+  dragonglass/src/HTTP/HttpResponse.cpp
+  dragonglass/src/Rpc/HttpClient.cpp
+  dragonglass/src/Rpc/JsonRpc.cpp
+  dragonglass/src/P2p/NetNode.cpp
+  dragonglass/src/P2p/LevinProtocol.cpp
+  dragonglass/src/P2p/NetNodeConfig.cpp
+  dragonglass/src/P2p/PeerListManager.cpp
+  dragonglass/src/CryptoNoteProtocol/CryptoNoteProtocolHandler.cpp
+  dragonglass/src/Logging/ILogger.cpp
+  dragonglass/src/Logging/LoggerGroup.cpp
+  dragonglass/src/Logging/CommonLogger.cpp
+  dragonglass/src/Logging/LoggerManager.cpp
+  dragonglass/src/Logging/FileLogger.cpp
+  dragonglass/src/Logging/StreamLogger.cpp
+  dragonglass/src/Logging/ConsoleLogger.cpp
+  dragonglass/src/Logging/LoggerMessage.cpp
+  dragonglass/src/Logging/LoggerRef.cpp
+  dragonglass/src/BlockchainExplorer/BlockchainExplorer.cpp
+  dragonglass/src/BlockchainExplorer/BlockchainExplorerDataBuilder.cpp
+  dragonglass/src/BlockchainExplorer/BlockchainExplorerErrors.cpp
 )
 
 file(GLOB_RECURSE SOURCES src/*.cpp)
@@ -184,7 +184,7 @@ if (WIN32)
 	message(FATAL_ERROR "Only MSVC is supported on this platform")
   endif ()
   add_definitions(/D_CRT_SECURE_NO_WARNINGS /D_WIN32_WINNT=0x0600 /DSTATICLIB)
-  include_directories(cryptonote/src/platform/msc)
+  include_directories(dragonglass/src/platform/msc)
 
   set(PLATFORM_DIR Windows)
   set(BUILD_PLATFORM WIN32)
@@ -192,7 +192,7 @@ if (WIN32)
   set(QTMAIN Qt5::WinMain)
 
 elseif (UNIX)
-  set(CRYPTONOTE_SOURCES ${CRYPTONOTE_SOURCES} cryptonote/external/miniupnpc/minissdpc.c)
+  set(CRYPTONOTE_SOURCES ${CRYPTONOTE_SOURCES} dragonglass/external/miniupnpc/minissdpc.c)
   if (APPLE)
     enable_language(ASM)
     file(GLOB_RECURSE OBJC_SOURCES src/*.mm)
@@ -228,8 +228,8 @@ elseif (UNIX)
   endif (APPLE)
 endif ()
 
-include_directories(cryptonote/src/Platform/${PLATFORM_DIR})
-file(GLOB PLATFORM_SOURCES cryptonote/src/Platform/${PLATFORM_DIR}/System/*)
+include_directories(dragonglass/src/Platform/${PLATFORM_DIR})
+file(GLOB PLATFORM_SOURCES dragonglass/src/Platform/${PLATFORM_DIR}/System/*)
 set(CRYPTONOTE_SOURCES ${CRYPTONOTE_SOURCES} ${PLATFORM_SOURCES})
 
 add_library(${CRYPTONOTE_LIB} STATIC ${CRYPTONOTE_SOURCES})

@@ -33,21 +33,12 @@
        <rect>
         <x>0</x>
         <y>0</y>
-        <width>840</width>
-        <height>446</height>
+        <width>846</width>
+        <height>454</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="m_send_frame_layout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
+       <property name="margin">
         <number>0</number>
        </property>
        <item>
@@ -95,7 +86,17 @@
       </widget>
      </item>
      <item row="0" column="1" colspan="3">
-      <widget class="QLineEdit" name="m_paymentIdEdit"/>
+      <widget class="QLineEdit" name="m_paymentIdEdit">
+       <property name="font">
+        <font>
+         <family>zai Drukarnia Wydawnicza 1870</family>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
       <widget class="QLabel" name="label_2">
