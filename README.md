@@ -1,5 +1,8 @@
-Add 'dragonglass' folder into the Dragonglasswallet folder
+Add 'dragonglass' folder into the Dragonglasswallet folder by copy paste
+
+
 or
+
 ```
 git submodule add https://github.com/ZirtysPerzys/dragonglass.git dragonglass
 ```
