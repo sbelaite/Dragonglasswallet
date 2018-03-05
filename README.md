@@ -1,9 +1,11 @@
 Add 'dragonglass' folder into the Dragonglasswallet folder
 or
-'''
+```
 git submodule add https://github.com/ZirtysPerzys/dragonglass.git dragonglass
-'''
----------------
+```
+
+
+
 Building wallet
 
 ```
