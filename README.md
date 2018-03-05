@@ -1,6 +1,4 @@
-1. After building dragonglass, Copy the dragonglass folder and paste into the Dragonglasswallet folder
-
-2. Build wallet
+Building wallet
 
 ```
 mkdir build && cd build && cmake .. && make
@@ -8,13 +6,13 @@ mkdir build && cd build && cmake .. && make
 
 
 
-3. After wallet is built, open "Dragonglasswallet" in build/src
+After wallet is built, "Dragonglasswallet" executable will be found in (build/src)
 
 copy address of new wallet
 close Dragonglasswallet
 
 
-4. go to  /dragonglass/build/release/src in terminal
+go to  /dragonglass/build/release/src in terminal
 
 ./dragonglassd --start_mining *paste your address [enter]
 
