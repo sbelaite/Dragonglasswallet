@@ -14,8 +14,8 @@
    <string>Frame</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>../../../../Documents/dgled.png</normaloff>../../../../Documents/dgled.png</iconset>
+   <iconset resource="../../resources.qrc">
+    <normaloff>:/images/cryptonote</normaloff>:/images/cryptonote</iconset>
   </property>
   <property name="frameShape">
    <enum>QFrame::NoFrame</enum>
@@ -26,7 +26,7 @@
   <property name="lineWidth">
    <number>22</number>
   </property>
-  <layout class="QGridLayout" name="gridLayout" columnstretch="40,0">
+  <layout class="QGridLayout" name="gridLayout" columnstretch="40">
    <property name="sizeConstraint">
     <enum>QLayout::SetDefaultConstraint</enum>
    </property>
@@ -1062,7 +1062,7 @@ p, li { white-space: pre-wrap; }
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QFrame" name="m_overviewWalletFrame">
+     <widget class="QWidget" name="m_overviewWalletWidget" native="true">
       <property name="geometry">
        <rect>
         <x>0</x>
@@ -1090,18 +1090,6 @@ p, li { white-space: pre-wrap; }
       </property>
       <property name="autoFillBackground">
        <bool>false</bool>
-      </property>
-      <property name="frameShape">
-       <enum>QFrame::HLine</enum>
-      </property>
-      <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
-      </property>
-      <property name="lineWidth">
-       <number>45</number>
-      </property>
-      <property name="midLineWidth">
-       <number>36</number>
       </property>
       <layout class="QGridLayout" name="gridLayout_2">
        <item row="5" column="1">
@@ -1245,16 +1233,12 @@ p, li { white-space: pre-wrap; }
        <string>Recent transactions</string>
       </property>
      </widget>
-     <zorder>m_recentTransactionsView</zorder>
-     <zorder>m_overviewWalletFrame</zorder>
-     <zorder>label_8</zorder>
-     <zorder>label</zorder>
     </widget>
    </item>
   </layout>
  </widget>
  <resources>
-  <include location="../../../../karbowanecwallet/src/resources.qrc"/>
+  <include location="../../resources.qrc"/>
   <include location="../../resources.qrc"/>
  </resources>
  <connections/>
