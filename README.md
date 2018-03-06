@@ -1,4 +1,4 @@
-Add 'dragonglass' folder into the Dragonglasswallet folder by copy paste
+Add 'dragonglass' folder into the Dragonglasswallet folder via copy paste
 
 
 or
